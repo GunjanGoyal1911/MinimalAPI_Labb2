@@ -6,15 +6,24 @@ services:
     container_name: sql-server-container
     environment:
       SA_PASSWORD: TestSql@123
-      ACCEPT_EULA: Y
+      ACCEPT_EULA: SA
     ports:
       - "1433:1433"
     volumes:
       - "./minimalapidb.sql:/docker-entrypoint-initdb.d/1.sql"
+    networks:
+      - app-network
+
   minimalapi_labb2:
     image: ${DOCKER_REGISTRY-}minimalapilabb2
     build:
       context: .
       dockerfile: MinimalAPI_Labb2/Dockerfile
     ports:
-       - 8000:80
+      - "8000:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
