@@ -9,15 +9,17 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["MinimalAPI_Labb2/MinimalAPI_Labb2.csproj", "MinimalAPI_Labb2/"]
 RUN dotnet restore "MinimalAPI_Labb2/MinimalAPI_Labb2.csproj"
 COPY . .
 WORKDIR "/src/MinimalAPI_Labb2"
-RUN dotnet build "MinimalAPI_Labb2.csproj" -c Release -o /app/build
+RUN dotnet build "MinimalAPI_Labb2.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MinimalAPI_Labb2.csproj" -c Release -o /app/publish /p:UseAppHost=false
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "MinimalAPI_Labb2.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

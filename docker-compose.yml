@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: MinimalAPI_Labb2/Dockerfile
     ports:
-      - "8000:80"
+      - "8081:80"
     networks:
       - app-network
 
