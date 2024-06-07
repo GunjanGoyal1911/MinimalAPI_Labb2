@@ -1,4 +1,4 @@
-This API is built to perform the CRUD operation (Create, read, Update,Delete) on product entity and get the data from the database. The application is built with .NET and uses Docker and Docker Compose for managing the running and testing of the application.
+This API is built to perform the CRUD operation (Create, Read, Update,Delete) on product entity and get the data from the database. The application is built with .NET and uses Docker and Docker Compose for managing the running and testing of the application.
 
 1. Clone this Repository
   Clone the repository to your local machine:
